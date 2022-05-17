@@ -2,9 +2,9 @@
   "name": "react-webcam-qr-scanner",
   "version": "1.0.7",
   "description": "A humble implementation of a real-time QR-code scanner using WebRTC",
-  "main": "./dist/index.js",
+  "main": "./src/index.js",
   "files": [
-    "dist/*"
+    "src/*"
   ],
   "dependencies": {
     "jsqr": "latest",
