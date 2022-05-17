@@ -1,6 +1,6 @@
 {
   "name": "react-webcam-qr-scanner",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "A humble implementation of a real-time QR-code scanner using WebRTC",
   "main": "./dist/index.js",
   "files": [
@@ -29,9 +29,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/simpleman383/react-webcam-qr-scanner.git"
+    "url": "git+https://github.com/luna-lend/react-webcam-qr-scanner.git"
   },
-  "author": "simpleman383",
+  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/simpleman383/react-webcam-qr-scanner/issues"
