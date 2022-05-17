@@ -19,17 +19,17 @@ const defaults = {
 };
 
 
-const asyncRequestAnimationFrame = () => new Promise(res => requestAnimationFrame(id => res(id))); 
+const asyncRequestAnimationFrame = () => new Promise(res => requestAnimationFrame(id => res(id)));
 
 
-const WebcamStream = React.forwardRef(({ 
+const WebcamStream = React.forwardRef(({
   constraints = defaults.constraints,
-  captureSize = defaults.activeCaptureSize, 
+  captureSize = defaults.activeCaptureSize,
   onCapture,
   onPlay,
   onPause,
   onLoadedMetadata,
-  ...props 
+  ...props
 }, ref) => {
   const $videoRef = React.useRef(null);
 
@@ -55,7 +55,7 @@ const WebcamStream = React.forwardRef(({
       $videoRef.current.playsInline = true;
       $videoRef.current.muted = true;
       $videoRef.current.disablePictureInPicture = true;
-  
+
       await $videoRef.current.play();
       updateState("playing");
     }
@@ -95,7 +95,7 @@ const WebcamStream = React.forwardRef(({
       video: {
         width: videoWidth,
         height: videoHeight
-      }, 
+      },
       capture: {
         dx, dy,
         width: captureWidth,
@@ -138,7 +138,7 @@ const WebcamStream = React.forwardRef(({
 
     return () => capturing.stop();
   }, [ capturing ]);
-  
+
   const handlePlay = (event) => {
     capturing.start();
     typeof(onPlay) == "function" && onPlay(event);
@@ -179,7 +179,7 @@ const WebcamStream = React.forwardRef(({
   }, [ mediaStreamContext, visible, startStream, stopStream ]);
 
 
-  return <video ref={$videoRef} onPlay={handlePlay} onPause={handlePause} onLoadedMetadata={handleMetadataLoaded} {...props} />
+  return <video ref={$videoRef} onPlay={handlePlay} onPause={handlePause} onLoadedMetadata={handleMetadataLoaded} style={props?.videoStyle} />
 });
 
 
@@ -189,18 +189,18 @@ const envSupportsWebRTC = () => {
 
 
 const WebcamStreamWrapper = (props, ref) => {
-  const { 
-    constraints, 
+  const {
+    constraints,
     captureSize,
-    onCapture, 
-    ...rest 
+    onCapture,
+    ...rest
   } = props;
 
   if (envSupportsWebRTC()) {
     return <WebcamStream ref={ref} constraints={constraints} captureSize={captureSize} onCapture={onCapture} {...rest} />
   }
   else {
-    return <video ref={ref} {...rest} />;
+    return <video ref={ref} style={props?.videoStyle} />;
   }
 };
 
